@@ -33,7 +33,7 @@ Based on the histograms plotted for plastic waste per capita by continent, it ca
 ### Exercise 2
 
 ```{r plastic-waste-density}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent, fill = continent)) +
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, color = continent, fill = continent)) +
   geom_density(alpha = 0.2) +
   labs (title = "Density Plot of Plastic Waste per Capita by Continent", x = "Plastic Waste per Capita", y = "Density")
 ```
@@ -43,7 +43,7 @@ Color and fill are defined by the mapping aesthetics of the plot because they ar
 ### Exercise 3
 
 ```{r plastic-waste-violin}
-ggplot(data = plastic_waste, mapping = aes(x = continent, y = plastic_waste_per_cap)) +
+ggplot(data = plastic_waste, aes(x = continent, y = plastic_waste_per_cap)) +
   geom_violin()
 ```
 
@@ -52,7 +52,7 @@ Violin plots are useful in order to show the full distribution of the data. It c
 ### Exercise 4
 
 ```{r plastic-waste-mismanaged}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap)) +
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap)) +
   geom_point() +
   labs (title = "Plastic Waste per Capita vs. Mismanaged Plastic Waste per Capita", x = " Waste per Capita", y = "Mismanaged Waste per Capita")
 ```
@@ -60,7 +60,7 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = misman
 This scatterplot demonstrates a positive relationship between plastic waste per capita and mismanaged plastic waste per capita. The trend suggests that as plastic waste increaes, the amount of mismanaged plastic waste increases as well. 
 
 ```{r plastic-waste-mismanaged-continent}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap, color = continent)) +
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap, color = continent)) +
   geom_point() +
   labs (title = "Plastic Waste per Capita vs. Mismanaged Plastic Waste per Capita by Continent", x = " Waste per Capita", y = "Mismanaged Waste per Capita")
 ```
@@ -68,12 +68,20 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = misman
 There seems to be a few differences that are highlighted by this scatterplot. Continents such as North America and Europe, which have higher plastic waste per capita, seem to manage it better so their mismanaged waste is lower. In comparison, continents that are less developed such as Asia and Africa likely have weaker waste management, which is why they have higher mismanaged waste despite having lower plastic waste.
 
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(plastic_waste, aes(x = total_pop, y = plastic_waste_per_cap)) +
+  geom_point() +
+  labs(
+    title = "Plastic Waste per Capita vs. Total Population", x = "Total Population", y = "Plastic Waste per Capita")
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(plastic_waste, aes(x = coastal_pop, y = plastic_waste_per_cap)) +
+  geom_point() +
+  labs(
+    title = "Plastic Waste per Capita vs. Coastal Population", x = "Coastal Population", y = "Plastic Waste per Capita")
 ```
+
+From these two scatterplots, coastal population seems to have a stronger linear association with plastic waste per capita. 
 
 ### Exercise 5
 
