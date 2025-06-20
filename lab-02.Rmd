@@ -33,11 +33,15 @@ Based on the histograms plotted for plastic waste per capita by continent, it ca
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent,
+    fill = continent)) +
+  geom_density(alpha = 0.2) +
+  labs (title = "Density Plot of Plastic Waste per Capita by Continent", x = "Plastic Waste per Capita", y = "Density")
 ```
 
-### Exercise 3
+Color and fill are defined by the mapping aesthetics of the plot because they are dependent on the variable "continent." On the other hand, the alpha level is the same for all continents and is not linked to a variable.  
 
+### Exercise 3
 Remove this text, and add your answer for Exercise 3 here.
 
 ```{r plastic-waste-violin}
