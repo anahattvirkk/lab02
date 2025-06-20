@@ -68,7 +68,7 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap, y = mismanaged_plast
 There seems to be a few differences that are highlighted by this scatterplot. Continents such as North America and Europe, which have higher plastic waste per capita, seem to manage it better so their mismanaged waste is lower. In comparison, continents that are less developed such as Asia and Africa likely have weaker waste management, which is why they have higher mismanaged waste despite having lower plastic waste.
 
 ```{r plastic-waste-population-total}
-ggplot(plastic_waste, aes(x = total_pop, y = plastic_waste_per_cap)) +
+ggplot(plastic_waste, aes(x = total_pop, y = plastic_waste_per_cap, color = continent)) +
   geom_point() +
   labs(
     title = "Plastic Waste per Capita vs. Total Population", x = "Total Population", y = "Plastic Waste per Capita")
@@ -85,10 +85,16 @@ From these two scatterplots, coastal population seems to have a stronger linear 
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
-
 ```{r recreate-viz}
-# insert code here
+plastic_waste <- plastic_waste %>%
+mutate(coastal_pop2 = coastal_pop / total_pop)
+
+ggplot(plastic_waste, aes(x = coastal_pop2, y = plastic_waste_per_cap, color = continent)) +
+  geom_point() +
+  scale_y_continuous(limits = c(0,0.7),
+    breaks = seq(0, 0.7, by = 0.2)) +
+  geom_smooth(method = "loess", se = FALSE, color = "black") +
+  labs(title = "Plastic Waste per Capita vs. Coastal Population Proportion by Continent", x = "Coastal Population Proportion", y = "Plastic Waste per Capita")
 ```
 
 
